@@ -1,0 +1,26 @@
+{
+  "name": "typeGraphQlSeries",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:FoushWare/typeGraphQlSeries.git",
+  "author": "foushware <lionmoon60@yahoo.com>",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server-express": "^2.10.1",
+    "express": "^4.17.1",
+    "graphql": "^14.6.0",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^0.17.6"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/graphql": "^14.5.0",
+    "@types/node": "^13.7.4",
+    "nodemon": "^2.0.2",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
+  },
+  "scripts": {
+    "start": "nodemon --exec ts-node src/index.ts"
+  }
+}
