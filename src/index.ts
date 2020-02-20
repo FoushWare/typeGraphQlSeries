@@ -1,8 +1,8 @@
 import { RegisterResolver } from "./modules/user/Register";
 //This is the start point of the project
 import { ApolloServer } from "apollo-server-express";
-import * as Express from "express";
-import { buildSchema } from "type-graphql";
+import Express from "express";
+import { buildSchema, formatArgumentValidationError } from "type-graphql";
 import "reflect-metadata";
 import { createConnection } from "typeorm";
 
@@ -16,7 +16,10 @@ const main = async () => {
     resolvers: [RegisterResolver]
   });
 
-  const apolloServer = new ApolloServer({ schema });
+  const apolloServer = new ApolloServer({
+    schema,
+    formatError: formatArgumentValidationError
+  });
   const app = Express();
   apolloServer.applyMiddleware({ app });
   app.listen(4000, () =>
