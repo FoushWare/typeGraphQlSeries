@@ -1,22 +1,19 @@
+import { RegisterResolver } from "./modules/user/Register";
 //This is the start point of the project
 import { ApolloServer } from "apollo-server-express";
 import * as Express from "express";
-import { buildSchema, Resolver, Query } from "type-graphql";
+import { buildSchema } from "type-graphql";
 import "reflect-metadata";
+import { createConnection } from "typeorm";
 
 //make a main function to execute
 const main = async () => {
-  @Resolver()
-  class HelloResolver {
-    @Query(() => String, { name: "helloWorld" })
-    hello() {
-      return "hello world";
-    }
-  }
+  await createConnection(); // read from the ormconfig and make the connection
+
   //Our Logic
   //bootstraping the shcema to add it to http server like apollo-express
   const schema = await buildSchema({
-    resolvers: [HelloResolver]
+    resolvers: [RegisterResolver]
   });
 
   const apolloServer = new ApolloServer({ schema });
