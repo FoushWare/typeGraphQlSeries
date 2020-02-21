@@ -1,31 +1,33 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
 import { ObjectType, Field, ID, Root } from "type-graphql";
+
 @ObjectType()
 @Entity()
 export class User extends BaseEntity {
-  @PrimaryGeneratedColumn()
   @Field(() => ID)
+  @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
   @Field()
+  @Column()
   firstName: string;
 
-  @Column()
   @Field()
+  @Column()
   lastName: string;
 
-  @Field() // not field in the db but in grapqhl schema
+  @Field()
+  @Column("text", { unique: true })
+  email: string;
+
+  @Field()
   name(@Root() parent: User): string {
     return `${parent.firstName} ${parent.lastName}`;
   }
 
-  @Column("text", { unique: true })
-  @Field()
-  email: string;
-
   @Column()
   password: string;
+
   @Column("bool", { default: false })
   confirmed: boolean;
 }
