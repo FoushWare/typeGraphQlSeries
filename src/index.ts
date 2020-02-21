@@ -1,35 +1,25 @@
-import { MeResolver } from "./modules/user/Me";
-import { redis } from "./redis";
-import { RegisterResolver } from "./modules/user/Register";
-//This is the start point of the project
+import { ConfirmResolver } from "./modules/user/Confirm";
+import { loginResolver } from "./modules/user/login";
+import "reflect-metadata";
 import { ApolloServer } from "apollo-server-express";
 import Express from "express";
 import { buildSchema, formatArgumentValidationError } from "type-graphql";
-import "reflect-metadata";
 import { createConnection } from "typeorm";
+import session from "express-session";
 import connectRedis from "connect-redis";
 import cors from "cors";
-import RedisStore from "connect-redis";
-import { loginResolver } from "./modules/user/login";
 
-import session from "express-session";
+import { RegisterResolver } from "./modules/user/Register";
+import { redis } from "./redis";
+import { MeResolver } from "./modules/user/Me";
 
-//make a main function to execute
 const main = async () => {
-  await createConnection(); // read from the ormconfig and make the connection
+  await createConnection();
 
-  //Our Logic
-  //bootstraping the shcema to add it to http server like apollo-express
   const schema = await buildSchema({
-    resolvers: [RegisterResolver, loginResolver, MeResolver],
+    resolvers: [MeResolver, RegisterResolver, loginResolver, ConfirmResolver],
     authChecker: ({ context: { req } }) => {
-      //   if (req.session.userId) {
-      //     return true; // the user is Authorized
-      //   }
-      //   return false; // access denied
-      // }
-
-      return !!req.session.userId; // this is a shortcut of the above code for checking authorization
+      return !!req.session.userId;
     }
   });
 
@@ -38,14 +28,18 @@ const main = async () => {
     formatError: formatArgumentValidationError,
     context: ({ req }: any) => ({ req })
   });
+
   const app = Express();
+
   const RedisStore = connectRedis(session);
+
   app.use(
     cors({
       credentials: true,
       origin: "http://localhost:3000"
     })
   );
+
   app.use(
     session({
       store: new RedisStore({
@@ -62,9 +56,12 @@ const main = async () => {
       }
     })
   );
+
   apolloServer.applyMiddleware({ app });
-  app.listen(4000, () =>
-    console.log(`server runs on port http:localhost:4000/graphql`)
-  );
+
+  app.listen(4000, () => {
+    console.log("server started on http://localhost:4000/graphql");
+  });
 };
+
 main();

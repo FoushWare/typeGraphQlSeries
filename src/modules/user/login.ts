@@ -1,6 +1,6 @@
 import { MyContext } from "./../../types/MyContext";
 import { User } from "./../../entity/User/User";
-import { Resolver, Query, Mutation, Arg, Ctx } from "type-graphql";
+import { Resolver, Mutation, Arg, Ctx } from "type-graphql";
 import "reflect-metadata";
 import * as bcrypt from "bcryptjs";
 
@@ -18,6 +18,9 @@ export class loginResolver {
     }
     const valid = await bcrypt.compare(password, user.password);
     if (!valid) {
+      return null;
+    }
+    if (!user.confirmed) {
       return null;
     }
     ctx.req.session!.userId = user.id;
