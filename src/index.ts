@@ -21,7 +21,16 @@ const main = async () => {
   //Our Logic
   //bootstraping the shcema to add it to http server like apollo-express
   const schema = await buildSchema({
-    resolvers: [RegisterResolver, loginResolver, MeResolver]
+    resolvers: [RegisterResolver, loginResolver, MeResolver],
+    authChecker: ({ context: { req } }) => {
+      //   if (req.session.userId) {
+      //     return true; // the user is Authorized
+      //   }
+      //   return false; // access denied
+      // }
+
+      return !!req.session.userId; // this is a shortcut of the above code for checking authorization
+    }
   });
 
   const apolloServer = new ApolloServer({
