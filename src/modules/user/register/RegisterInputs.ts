@@ -1,4 +1,4 @@
-import { PasswordInput } from "./../Shared/PasswordInput";
+import { PasswordInput } from "../../Shared/PasswordInput";
 import { Length, IsEmail } from "class-validator";
 import { InputType, Field } from "type-graphql";
 

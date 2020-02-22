@@ -1,5 +1,5 @@
-import { RegisterInput } from "./RegisterInputs";
-import { User } from "./../../entity/User/User";
+import { RegisterInput } from "./register/RegisterInputs";
+import { User } from "../../entity/User/User";
 import { Resolver, Query, Mutation, Arg, UseMiddleware } from "type-graphql";
 import bcrypt from "bcryptjs";
 

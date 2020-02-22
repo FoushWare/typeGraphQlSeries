@@ -1,4 +1,4 @@
-import { Min } from "class-validator";
+// import { Min } from "class-validator";
 import { InputType, Field } from "type-graphql";
 
 @InputType()
