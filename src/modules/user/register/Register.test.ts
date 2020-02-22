@@ -2,6 +2,8 @@ import { gCall } from "./../../../test-utils/gCall";
 import { testConn } from "./../../../test-utils/testConn";
 import { Connection } from "typeorm";
 import faker from "faker";
+import "reflect-metadata";
+
 import { User } from "../../../entity/User/User";
 
 //make a connection to the DB
