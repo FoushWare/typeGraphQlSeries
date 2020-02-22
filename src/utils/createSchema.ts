@@ -1,3 +1,4 @@
+import { ProfilePictureResolver } from "./../modules/ProfilePicture";
 import { ChangePasswordResolver } from "./../modules/user/ChangePassword";
 import { ConfirmResolver } from "./../modules/user/Confirm";
 import { ForgetPasswordResolver } from "./../modules/user/ForgetPassword";
@@ -18,7 +19,8 @@ export const createSchema = () =>
       LogoutResolver,
       MeResolver,
       RegisterResolver,
-      CreateUserResolver
+      CreateUserResolver,
+      ProfilePictureResolver
       // CreateProductResolver
     ],
     authChecker: ({ context: { req } }) => {
