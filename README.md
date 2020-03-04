@@ -1,3 +1,7 @@
+<a href="https://www.youtube.com/playlist?list=PLN3n1USn4xlma1bBu3Tloe4NyYn9Ko8Gs" target="_blank"><img src="https://i.ytimg.com/vi/8yZImm2A1KE/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLChbDje4oU1aSIeQEiyOGfDPF5XAA" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+
+
 typeGraphQl series
 
 - Setup TypeGraphQl
