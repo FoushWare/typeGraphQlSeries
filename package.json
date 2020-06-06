@@ -13,7 +13,7 @@
     "@types/nodemailer": "^6.4.0",
     "@types/typescript": "^2.0.0",
     "@types/uuid": "^3.4.7",
-    "apollo-server-express": "^2.10.1",
+    "apollo-server-express": "^2.14.2",
     "bcryptjs": "^2.4.3",
     "class-validator": "^0.11.0",
     "connect-redis": "^4.0.4",
